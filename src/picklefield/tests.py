@@ -146,5 +146,7 @@ class PickledObjectFieldTests(TestCase):
                           ' "model": "picklefield.minimaltestingmodel",'
                           ' "fields": {"pickle_field": "gAJ9cQFVA2Zvb3ECVQNiYXJxA3Mu"}}]')
         for deserialized_test in serializers.deserialize('json', json_test):
-            self.assertEquals(deserialized_test.object,
-                              model_test)
+            self.assertEquals(deserialized_test.object.pk,
+                              model_test.pk)
+            self.assertEquals(deserialized_test.object.pickle_field,
+                              model_test.pickle_field)
